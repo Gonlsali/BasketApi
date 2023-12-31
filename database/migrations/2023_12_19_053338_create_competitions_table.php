@@ -21,9 +21,9 @@ return new class extends Migration
             $table->integer('max_team');
             $table->string('rules');
             $table->unsignedBigInteger('court_id');
-            $table->foreignId('court_id')
-                ->constrained(table: 'courts', indexName: 'id')
-                ->onUpdate('cascade')
+            $table->foreign('court_id')
+                ->references('id')
+                ->on('courts')
                 ->onDelete('cascade');
         });
     }

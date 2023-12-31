@@ -14,17 +14,18 @@ return new class extends Migration
         Schema::create('court_facilities', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->unsignedBigInteger('court_id');
-            $table->unsignedBigInteger('facility_id');
-            $table->foreignId('court_id')
-                ->constrained(table: 'courts', indexName: 'id')
-                ->onUpdate('cascade')
+            $table->unsignedBigInteger('court_id');  // Define court_id only once
+            $table->foreign('court_id')
+                ->references('id')
+                ->on('courts')
                 ->onDelete('cascade');
-            $table->foreignId('facility_id')
-                ->constrained(table: 'facilities', indexName: 'id')
-                ->onUpdate('cascade')
+            $table->unsignedBigInteger('facility_id');
+            $table->foreign('facility_id')
+                ->references('id')
+                ->on('facilities')
                 ->onDelete('cascade');
         });
+
     }
 
     /**
