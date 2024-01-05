@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->date('date');
+            $table->time('start');
+            $table->time('end');
+            $table->integer('players_joined');
+            $table->integer('max_players');
             $table->unsignedBigInteger('court_id');
             $table->foreign('court_id')
                 ->references('id')
@@ -24,11 +28,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->date('date');
-            $table->timestamp('start_time')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('end_time')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->integer('players_joined');
-            $table->integer('max_players');
+            $table->timestamps();
         });
     }
 

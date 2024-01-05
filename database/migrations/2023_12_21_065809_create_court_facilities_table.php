@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('court_facilities', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->unsignedBigInteger('court_id');
             $table->foreign('court_id')
                 ->references('id')
@@ -24,6 +23,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('facilities')
                 ->onDelete('cascade');
+            $table->timestamps();
         });
 
     }

@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('competitions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('price');
             $table->string('organizer');
             $table->date('start_date');
@@ -25,6 +24,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('courts')
                 ->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

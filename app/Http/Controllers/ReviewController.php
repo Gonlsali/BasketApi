@@ -37,14 +37,14 @@ class ReviewController extends Controller
         ];
     }
 
-    public function DeleteReview(Request $request){
+    public function deleteReview(Request $request){
         $review = Review::where('id', $request->id)->first();
         $review->delete();
 
         return[
             'status' => Response::HTTP_OK,
             'message' => 'Success',
-            'data' => $review
+            'data' => []
         ];
     }
 }

@@ -38,8 +38,6 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
-            $user->phone = $request->phone;
-            $user->age = $request->age;
             $user->save();
             return [
                 'status' => Response::HTTP_OK,
@@ -115,10 +113,5 @@ class UserController extends Controller
             'message' => "User not found",
             'data' => []
         ];
-    }
-
-    public function getUserById($id)
-    {
-        return User::find($id);
     }
 }
