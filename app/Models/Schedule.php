@@ -16,17 +16,19 @@ class Schedule extends Model
         'end',
         'player_joined',
         'max_player',
+        'user_id',
+        'court_id'
     ];
 
     protected $dates = ['date', 'start', 'end'];
 
-    public function users(): BelongsToMany
+    public function user(): BelongsTo
     {
-        return $this->belongsToMany(User::class, 'schedule_user_court', 'schedule_id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function courts(): BelongsToMany
+    public function court(): BelongsTo
     {
-        return $this->belongsToMany(Court::class, 'schedule_user_court', 'schedule_id', 'court_id');
+        return $this->belongsTo(Court::class, 'court_id', 'id');
     }
 }

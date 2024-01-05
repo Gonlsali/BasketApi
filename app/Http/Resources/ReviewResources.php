@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CompetitionResources extends ResourceCollection
+class ReviewResources extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -17,12 +17,10 @@ class CompetitionResources extends ResourceCollection
         return parent::toArray($request);
 
         return [
-            'price' => $this->price,
-            'organizer' => $this->organizer,
-            'start_date' => $this->start_date,
-            'end_date' => $this->end_date,
-            'max_team' => $this->max_team,
-            'rules' => $this->rules,
+            'rating' => $this->rating,
+            'review' => $this->review,
+            'user_id' => UserResources::collection($this->user_id),
+            'court_id' => CourtResources::collection($this->court_id)
         ];
     }
 }

@@ -15,5 +15,11 @@ class CourtResources extends ResourceCollection
     public function toArray(Request $request): array
     {
         return parent::toArray($request);
+
+        return [
+            'name' => $this->name,
+            'address' => $this->address,
+            'price' => $this->price
+        ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Facility extends Model
 {
@@ -14,7 +14,8 @@ class Facility extends Model
         'name'
     ];
 
-    public function courts(): BelongsToMany {
-        return $this->belongsToMany(Court::class);
+    public function courts(): HasMany
+    {
+        return $this->hasMany(CourtFacility::class, 'court_id', 'id');
     }
 }

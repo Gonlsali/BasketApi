@@ -15,5 +15,15 @@ class ScheduleResources extends ResourceCollection
     public function toArray(Request $request): array
     {
         return parent::toArray($request);
+
+        return [
+            'date' => $this->date,
+            'start' => $this->start,
+            'end' => $this->end,
+            'player_joined' => $this->player_joined,
+            'max_player' => $this->max_player,
+            'user_id' => UserResources::collection($this->user_id),
+            'court_id' => CourtResources::collection($this->court_id)
+        ];
     }
 }

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('courts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('nama_lapangan');
-            $table->string('alamat_lapangan');
-            $table->string('harga');
+            $table->string('name');
+            $table->string('address');
+            $table->string('price');
         });
     }
 

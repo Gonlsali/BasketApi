@@ -15,5 +15,11 @@ class UserResources extends ResourceCollection
     public function toArray(Request $request): array
     {
         return parent::toArray($request);
+
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => $this->password
+        ];
     }
 }
