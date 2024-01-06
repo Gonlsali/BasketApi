@@ -13,7 +13,12 @@ class CourtController extends Controller
 {
     public function showCourts() {
         $courts = Court::all();
-        return new CourtResource($courts);
+
+        return [
+            'status' => Response::HTTP_OK,
+            'message' => 'Success',
+            'data'=> $courts
+        ];
     }
 
     public function courtById(Request $request) {
@@ -22,7 +27,7 @@ class CourtController extends Controller
         return [
             'status' => Response::HTTP_OK,
             'message' => 'Success',
-            'data'=> CourtResources::collection($court)
+            'data'=> $court
         ];
     }
 

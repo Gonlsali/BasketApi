@@ -16,22 +16,22 @@ class Court extends Model
         'price'
     ];
 
-    public function facilities(): HasMany
+    public function facilities()
     {
         return $this->hasMany(CourtFacility::class, 'facility_id', 'id');
     }
 
-    public function schedules(): HasMany
+    public function schedules()
     {
         return $this->hasMany(Schedule::class,'court_id', 'id');
     }
 
-    public function reviews(): HasMany
+    public function reviews()
     {
         return $this->hasMany(Review::class,'court_id', 'id');
     }
 
-    public function competitions(): HasMany
+    public function competitions()
     {
         return $this->hasMany(Student::class,'court_id', 'id');
     }

@@ -14,8 +14,8 @@ class Schedule extends Model
         'date',
         'start',
         'end',
-        'player_joined',
-        'max_player',
+        'players_joined',
+        'max_players',
         'user_id',
         'court_id'
     ];
@@ -30,5 +30,10 @@ class Schedule extends Model
     public function court(): BelongsTo
     {
         return $this->belongsTo(Court::class, 'court_id', 'id');
+    }
+
+    public function players(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'schedule_players', 'schedule_id', 'user_id');
     }
 }

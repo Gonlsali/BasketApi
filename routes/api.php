@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourtController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\CompetitionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,5 +47,10 @@ Route::middleware(['auth:sanctum'])->group(
         Route::post('review',[ReviewController::class, 'createReview']);
         Route::delete('review',[ReviewController::class, 'deleteReview']);
 
+        //Schedule Routing
+        Route::get('user_schedule', [ScheduleController::class,'showUserSchedule']);
+        Route::get('court_schedule', [ScheduleController::class,'showCourtSchedule']);
+        Route::post('schedule', [ScheduleController::class,'createSchedule']);
+        Route::post('add_player', [ScheduleController::class,'addPlayer']);
     }
 );
