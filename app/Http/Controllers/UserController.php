@@ -34,15 +34,29 @@ class UserController extends Controller
     public function createUser(Request $request)
     {
         try {
+            $existingUser = User::where('email', $request->email)->first();
+
+            if ($existingUser) {
+                return [
+                    'status' => Response::HTTP_CONFLICT, // 409 Conflict
+                    'message' => "User already exists",
+                    'data' => []
+                ];
+            }
+
             $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->save();
+
             return [
                 'status' => Response::HTTP_OK,
-                'message' => "Success",
-                'data' => $user
+                'message' => "User created",
+                'data' => [
+                    $user->createToken('login')->plainTextToken,
+                    $user->email
+                ]
             ];
         } catch (Exception $e) {
             return [
@@ -52,6 +66,7 @@ class UserController extends Controller
             ];
         }
     }
+
 
     public function updateUser(Request $request)
     {
@@ -66,8 +81,6 @@ class UserController extends Controller
                 $user->name = $request->name;
                 $user->email = $request->email;
                 $user->password = Hash::make($request->password);
-                $user->phone = $request->phone;
-                $user->age = $request->age;
                 $user->save();
                 return [
                     'status' => Response::HTTP_OK,

@@ -52,5 +52,8 @@ Route::middleware(['auth:sanctum'])->group(
         Route::get('court_schedule', [ScheduleController::class,'showCourtSchedule']);
         Route::post('schedule', [ScheduleController::class,'createSchedule']);
         Route::post('add_player', [ScheduleController::class,'addPlayer']);
+
+        //Competition Routing
+        Route::get('competition', [CompetitionController::class, 'showCompetition']);
     }
 );

@@ -8,6 +8,7 @@ use App\Http\Resources\CompetitionResources;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Request;
 use App\Models\Competition;
+use App\Models\Court;
 
 class CompetitionController extends Controller
 {

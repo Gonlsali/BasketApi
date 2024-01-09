@@ -18,21 +18,21 @@ class Court extends Model
 
     public function facilities()
     {
-        return $this->hasMany(CourtFacility::class, 'facility_id', 'id');
+        return $this->hasMany(CourtFacility::class, 'court_id', 'id');
     }
 
     public function schedules()
     {
-        return $this->hasMany(Schedule::class,'court_id', 'id');
+        return $this->hasMany(Schedule::class, 'court_id', 'id');
     }
 
     public function reviews()
     {
-        return $this->hasMany(Review::class,'court_id', 'id');
+        return $this->hasMany(Review::class, 'court_id', 'id');
     }
 
     public function competitions()
     {
-        return $this->hasMany(Student::class,'court_id', 'id');
+        return $this->hasMany(Competition::class, 'court_id', 'id');
     }
 }
