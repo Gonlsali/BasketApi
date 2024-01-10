@@ -45,24 +45,7 @@ class AuthenticationController extends Controller
         }
     }
 
-    public function getUserData(Request $request)
-    {
-        $user = User::where('id', $request->id)->first();
-
-        if (!empty($user)) {
-            return ([
-                'status' => Response::HTTP_OK,
-                'messate' => "User Found",
-                'data'[$user]
-            ]);
-        } else {
-            return ([
-                'status' => Response::HTTP_NOT_FOUND,
-                'message' => "User Not Found",
-                'data' => []
-            ]);
-        }
-    }
+    
 
     public function logout(Request $request)
     {

@@ -17,6 +17,24 @@ class UserController extends Controller
         return UserResources::collection($user);
     }
 
+    public function getUser(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if (!empty($user)) {
+            return ([
+                'status' => Response::HTTP_OK,
+                'messate' => "User Found",
+                'data'[$user]
+            ]);
+        } else {
+            return ([
+                'status' => Response::HTTP_NOT_FOUND,
+                'message' => "User Not Found",
+                'data' => []
+            ]);
+        }
+    }
+
     public function checkPassword()
     {
         $users = User::all();
